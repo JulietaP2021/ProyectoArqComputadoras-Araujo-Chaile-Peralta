@@ -87,7 +87,7 @@ int main() {
     }
 }
 
-//x algoritmo
+//por algoritmo
 void autoFantastico() {
     Sleep(2000);
     system("cls"); //limpiar pantalla
@@ -119,19 +119,58 @@ void autoFantastico() {
     } while(!kbhit()); //repeat loop until the keyboard is hit
 }
 
-//x tabla
+//por tabla
 void elChoque() {
     cout << endl;
     cout << "EL CHOQUE" << endl;
 }
 
-//x tabla
+//por tabla
 void estrellaFugaz() {
-    cout << endl;
+    Sleep(2000);
+    system("cls"); //limpiar pantalla
+
+    unsigned char output[16];
+
+    output[0] = 0x80;  //1000 0000
+    output[1] = 0xc0;  //1100 0000
+    output[2] = 0xe0;  //1110 0000
+    output[3] = 0xf0;  //1111 0000
+    output[4] = 0xf8;  //1111 1000
+    output[5] = 0xfc;  //1111 1100
+    output[6] = 0xfe;  //1111 1110
+    output[7] = 0xff;  //1111 1111
+
+    output[8] = 0x7f;  //0111 1111
+    output[9] = 0x3f;  //0011 1111
+    output[10] = 0x1f; //0001 1111
+    output[11] = 0x0f; //0000 1111
+    output[12] = 0x07; //0000 0111
+    output[13] = 0x03; //0000 0011
+    output[14] = 0x01; //0000 0001
+    output[15] = 0x00; //0000 0000
+
     cout << "ESTRELLA FUGAZ" << endl;
+    cout << endl;
+    cout << "Secuencia en accion... Oprima una tecla para finalizar" << endl;
+    cout << endl;
+
+    do {
+        for(int i = 0; i < 8; i++) { //se prende
+            disp_binary(output[i]);
+            delay(700);
+        }
+
+        for(int i = 8; i < 16; i++) { //se apaga
+            disp_binary(output[i]);
+            delay(2300);
+        }
+
+        delay(17000);
+    } while(!kbhit()); //repeat loop until the keyboard is hit
 }
 
-//x algoritmo
+//por algoritmo
 void elIndeciso() {
     Sleep(2000);
     system("cls"); //limpiar pantalla
@@ -159,7 +198,7 @@ void elIndeciso() {
     } while(!kbhit()); //repeat loop until the keyboard is hit
 }
 
-//NO FUNCIONA EL KBHIT!!!!!
+//NO FUNCIONA EL KBHIT
 
 void disp_binary(int n) {
     for(int i = 128; i > 0; i = i / 2) {
