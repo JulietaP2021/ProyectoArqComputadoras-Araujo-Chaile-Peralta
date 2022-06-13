@@ -121,8 +121,24 @@ void autoFantastico() {
 
 //por tabla
 void elChoque() {
-    cout << endl;
+    Sleep(2000);
+    system("cls"); //limpiar pantalla
+
+    unsigned char output[8] = {0x81, 0x42, 0x24, 0x18, 0x18, 0x24, 0x42, 0x81};
+    int time = 3000; //tiempo de espera
+
     cout << "EL CHOQUE" << endl;
+    cout << endl;
+    cout << "Secuencia en accion... Oprima una tecla para finalizar" << endl;
+    cout << endl;
+
+    do {
+        for(int i = 0; i < 8; i++) {
+            disp_binary(output[i]);
+            delay(time);
+        }
+
+    } while (!kbhit()); //repeat loop until the keyboard is hit
 }
 
 //por tabla
