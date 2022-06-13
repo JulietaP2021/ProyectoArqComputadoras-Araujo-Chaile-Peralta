@@ -3,6 +3,10 @@
 #include <cstdlib> //system("cls");
 #include <windows.h> //Sleep
 
+#define ESC 27
+#define SUBIR 72
+#define BAJAR 80
+
 using namespace std;
 
 int menu();
@@ -124,16 +128,24 @@ void autoFantastico() {
         }
     } while(!kbhit()); //repeat loop until the keyboard is hit
 
-    system("cls");
-    menu();
+    char tecla = getch();
+
+    if(tecla == ESC) {
+        system("cls");
+        menu();
+    } /* else {
+        cout << endl << endl;
+        cout << "Error";
+        autoFantastico();
+    } */
 }
 
 void elChoque() {
     Sleep(2000);
-    system("cls"); //limpiar pantalla
+    system("cls");
 
     unsigned char output[8] = {0x81, 0x42, 0x24, 0x18, 0x18, 0x24, 0x42, 0x81};
-    int time = 3000; //tiempo de espera
+    int time = 3000;
 
     cout << "EL CHOQUE" << endl;
     cout << endl;
@@ -146,35 +158,21 @@ void elChoque() {
             delay(time);
         }
 
-    } while (!kbhit()); //repeat loop until the keyboard is hit
+    } while (!kbhit());
 
-    system("cls");
-    menu();
+    char tecla = getch();
+
+    if(tecla == ESC) {
+        system("cls");
+        menu();
+    }
 }
 
 void estrellaFugaz() {
     Sleep(2000);
-    system("cls"); //limpiar pantalla
+    system("cls");
 
-    unsigned char output[16];
-
-    output[0] = 0x80;  //1000 0000
-    output[1] = 0xc0;  //1100 0000
-    output[2] = 0xe0;  //1110 0000
-    output[3] = 0xf0;  //1111 0000
-    output[4] = 0xf8;  //1111 1000
-    output[5] = 0xfc;  //1111 1100
-    output[6] = 0xfe;  //1111 1110
-    output[7] = 0xff;  //1111 1111
-
-    output[8] = 0x7f;  //0111 1111
-    output[9] = 0x3f;  //0011 1111
-    output[10] = 0x1f; //0001 1111
-    output[11] = 0x0f; //0000 1111
-    output[12] = 0x07; //0000 0111
-    output[13] = 0x03; //0000 0011
-    output[14] = 0x01; //0000 0001
-    output[15] = 0x00; //0000 0000
+    unsigned char output[16] = {0x80, 0xc0, 0xe0, 0xf0, 0xf8, 0xfc, 0xfe, 0xff, 0x7f, 0x3f, 0x1f, 0x0f, 0x07, 0x03, 0x01, 0x00};
 
     cout << "ESTRELLA FUGAZ" << endl;
     cout << endl;
@@ -187,24 +185,46 @@ void estrellaFugaz() {
             delay(700);
         }
 
+        //1000 0000
+        //1100 0000
+        //1110 0000
+        //1111 0000
+        //1111 1000
+        //1111 1100
+        //1111 1110
+        //1111 1111
+
         for(int i = 8; i < 16; i++) { //se apaga
             disp_binary(output[i]);
             delay(2300);
         }
 
-        delay(17000);
-    } while(!kbhit()); //repeat loop until the keyboard is hit
+        //0111 1111
+        //0011 1111
+        //0001 1111
+        //0000 1111
+        //0000 0111
+        //0000 0011
+        //0000 0001
+        //0000 0000
 
-    system("cls");
-    menu();
+        delay(17000);
+    } while(!kbhit());
+
+    char tecla = getch();
+
+    if(tecla == ESC) {
+        system("cls");
+        menu();
+    }
 }
 
 void elIndeciso() {
     Sleep(2000);
-    system("cls"); //limpiar pantalla
+    system("cls");
 
-    unsigned char output; //un entero de 8 bits sin signo (rango de 0 a 255)
-    int time = 4000; //tiempo de espera
+    unsigned char output;
+    int time = 4000;
     int avanza = 1;
 
     cout << "EL INDECISO" << endl;
@@ -217,16 +237,20 @@ void elIndeciso() {
             output = 0x80;
             for(int j = 0; j < avanza; j++) {
                 disp_binary(output);
-                delay(time); //espera un momento
+                delay(time);
                 output = output >> 1; //">>" desplazamiento a la derecha
             }
             avanza = avanza + 1;
         }
         avanza = 1;
-    } while(!kbhit()); //repeat loop until the keyboard is hit
+    } while(!kbhit());
 
-    system("cls");
-    menu();
+    char tecla = getch();
+
+    if(tecla == ESC) {
+        system("cls");
+        menu();
+    }
 }
 
 void disp_binary(int n) {
