@@ -5,10 +5,12 @@
 
 using namespace std;
 
-void autoFantastico();
-void elChoque();
-void estrellaFugaz();
-void elIndeciso();
+int menu();
+
+void autoFantastico(); //por algoritmo
+void elChoque(); //por tabla
+void estrellaFugaz(); //por tabla
+void elIndeciso(); //por algoritmo
 
 void disp_binary(int);
 void delay(int);
@@ -18,7 +20,6 @@ int main() {
     char arr[6] = {};
     int verificarPsw = 1; //1 = password correcta
     int contador = 0; //3 intentos para ingresar el password
-    int opcion;
 
     do {
         cout << "Ingrese su password de 5 digitos: ";
@@ -52,6 +53,12 @@ int main() {
     }
 
     //menú
+    menu();
+}
+
+int menu() {
+    int opcion;
+
     do {
         cout << endl;
         cout << "MENU" << endl;
@@ -87,7 +94,6 @@ int main() {
     }
 }
 
-//por algoritmo
 void autoFantastico() {
     Sleep(2000);
     system("cls"); //limpiar pantalla
@@ -97,7 +103,7 @@ void autoFantastico() {
 
     cout << "AUTO FANTASTICO" << endl;
     cout << endl;
-    cout << "Secuencia en accion... Oprima una tecla para finalizar" << endl;
+    cout << "Secuencia en accion... Oprima la tecla ESC para finalizar" << endl;
     cout << endl;
 
     do {
@@ -117,9 +123,11 @@ void autoFantastico() {
             delay(time);
         }
     } while(!kbhit()); //repeat loop until the keyboard is hit
+
+    system("cls");
+    menu();
 }
 
-//por tabla
 void elChoque() {
     Sleep(2000);
     system("cls"); //limpiar pantalla
@@ -129,7 +137,7 @@ void elChoque() {
 
     cout << "EL CHOQUE" << endl;
     cout << endl;
-    cout << "Secuencia en accion... Oprima una tecla para finalizar" << endl;
+    cout << "Secuencia en accion... Oprima la tecla ESC para finalizar" << endl;
     cout << endl;
 
     do {
@@ -139,9 +147,11 @@ void elChoque() {
         }
 
     } while (!kbhit()); //repeat loop until the keyboard is hit
+
+    system("cls");
+    menu();
 }
 
-//por tabla
 void estrellaFugaz() {
     Sleep(2000);
     system("cls"); //limpiar pantalla
@@ -168,7 +178,7 @@ void estrellaFugaz() {
 
     cout << "ESTRELLA FUGAZ" << endl;
     cout << endl;
-    cout << "Secuencia en accion... Oprima una tecla para finalizar" << endl;
+    cout << "Secuencia en accion... Oprima la tecla ESC para finalizar" << endl;
     cout << endl;
 
     do {
@@ -184,9 +194,11 @@ void estrellaFugaz() {
 
         delay(17000);
     } while(!kbhit()); //repeat loop until the keyboard is hit
+
+    system("cls");
+    menu();
 }
 
-//por algoritmo
 void elIndeciso() {
     Sleep(2000);
     system("cls"); //limpiar pantalla
@@ -197,7 +209,7 @@ void elIndeciso() {
 
     cout << "EL INDECISO" << endl;
     cout << endl;
-    cout << "Secuencia en accion... Oprima una tecla para finalizar" << endl;
+    cout << "Secuencia en accion... Oprima la tecla ESC para finalizar" << endl;
     cout << endl;
 
     do {
@@ -212,9 +224,10 @@ void elIndeciso() {
         }
         avanza = 1;
     } while(!kbhit()); //repeat loop until the keyboard is hit
-}
 
-//NO FUNCIONA EL KBHIT
+    system("cls");
+    menu();
+}
 
 void disp_binary(int n) {
     for(int i = 128; i > 0; i = i / 2) {
