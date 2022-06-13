@@ -8,7 +8,7 @@ using namespace std;
 void autoFantastico();
 void elChoque();
 void estrellaFugaz();
-//void opcion4();
+void elIndeciso();
 
 void disp_binary(int);
 void delay(int);
@@ -58,7 +58,7 @@ int main() {
         cout << "1 -> Auto fantastico" << endl;
         cout << "2 -> El choque" << endl;
         cout << "3 -> Estrella fugaz" << endl;
-        cout << "4 -> " << endl;
+        cout << "4 -> El indeciso" << endl;
         cout << "5 -> Salir" << endl;
         cout << endl;
         cout << "Elija su opcion: ";
@@ -77,16 +77,17 @@ int main() {
         case 3:
             estrellaFugaz();
         break;
-        /*
+
         case 4:
-            opcion4();
+            elIndeciso();
         break;
-        */
+
         default:
             return 0;
     }
 }
 
+//x algoritmo
 void autoFantastico() {
     Sleep(2000);
     system("cls"); //limpiar pantalla
@@ -118,15 +119,47 @@ void autoFantastico() {
     } while(!kbhit()); //repeat loop until the keyboard is hit
 }
 
+//x tabla
 void elChoque() {
     cout << endl;
     cout << "EL CHOQUE" << endl;
 }
 
+//x tabla
 void estrellaFugaz() {
     cout << endl;
     cout << "ESTRELLA FUGAZ" << endl;
 }
+
+//x algoritmo
+void elIndeciso() {
+    Sleep(2000);
+    system("cls"); //limpiar pantalla
+
+    unsigned char output; //un entero de 8 bits sin signo (rango de 0 a 255)
+    int time = 4000; //tiempo de espera
+    int avanza = 1;
+
+    cout << "EL INDECISO" << endl;
+    cout << endl;
+    cout << "Secuencia en accion... Oprima una tecla para finalizar" << endl;
+    cout << endl;
+
+    do {
+        for(int i = 0; i < 8; i++) { //8 leds
+            output = 0x80;
+            for(int j = 0; j < avanza; j++) {
+                disp_binary(output);
+                delay(time); //espera un momento
+                output = output >> 1; //">>" desplazamiento a la derecha
+            }
+            avanza = avanza + 1;
+        }
+        avanza = 1;
+    } while(!kbhit()); //repeat loop until the keyboard is hit
+}
+
+//NO FUNCIONA EL KBHIT!!!!!
 
 void disp_binary(int n) {
     for(int i = 128; i > 0; i = i / 2) {
