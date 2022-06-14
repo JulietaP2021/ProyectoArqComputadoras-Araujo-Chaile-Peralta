@@ -133,11 +133,7 @@ void autoFantastico() {
     if(tecla == ESC) {
         system("cls");
         menu();
-    } /* else {
-        cout << endl << endl;
-        cout << "Error";
-        autoFantastico();
-    } */
+    }
 }
 
 void elChoque() {
@@ -264,7 +260,6 @@ void disp_binary(int n) {
     cout << "\b \r"; //borrar línea
 }
 
-//no entiendo como funciona
 void delay(int time) {
     for(int i = time; i > 0; i--) {
         for(int j = 0; j < 65535; j++);
