@@ -16,3 +16,4 @@ LOOP2
 			SUBS		R5, R5, #1 ;decremento en 1 a R5
 			BNE		LOOP1 ;si R5 no llegó a 0, repito LOOP1
 			LDMFD	SP!, {R4, R5, LR}
+			MOV		PC, LR ;fin de la subrutina elIndeciso

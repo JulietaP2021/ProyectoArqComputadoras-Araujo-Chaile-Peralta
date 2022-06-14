@@ -1,0 +1,25 @@
+estrellaFugaz
+			
+			MOV		R0, #TABLA ;inicializo R0 a donde comienza mi tabla
+			
+			STMFD	SP!, {R4, R5, R6, R8, LR} ;PUSH salva los registros
+			MOV		R4, #8 ;contador x 8 del LOOP1
+			MOV		R6, #1 ;índice i
+LOOP1
+			LDRB		R7, [R0, R6] ;se fija en el índice, busca en esa pos de la tabla y lo guarda en R7
+			BL		disp_binary
+			BL		delay
+			ADDS		R6, R6, #1 ;índice i se incrementa en 1
+			SUBS		R4, R4, #1 ;decremento en 1 a R4
+			BNE		LOOP1 ;si R4 no llegó a 0, repito LOOP1
+			MOV		R5, #16 ;contador x 8 del LOOP2
+			MOV		R8, #8 ;índice i
+LOOP2
+			BL		disp_binary
+			BL		delay
+			SUBS		R5, R5, #1 ;decremento en 1 a R5
+			CMP		R5, #8
+			BNE		LOOP2 ;si R5 no es = 8, repito LOOP2
+			LDMFD	SP!, {R4, R5, R6, R8, LR} ;POP
+			MOV		PC, LR ;fin de la subrutina estrellaFugaz
+TABLA		DCD		0x80, 0xc0, 0xe0, 0xf0, 0xf8, 0xfc, 0xfe, 0xff, 0x7f, 0x3f, 0x1f, 0x0f, 0x07, 0x03, 0x01, 0x00
