@@ -1,0 +1,15 @@
+		MOV		R1, #4000 ;R1 es mi variable "time" (parámetro de delay)
+		MOV		R4, #1 ;R4 es mi variable "avanza" (contador del LOOP2)
+		MOV		R5, #8 ;contador x 8 del LOOP1
+LOOP1
+		MOV		R0, #0x80 ;parámetro de disp_binary
+LOOP2
+		BL		disp_binary
+		BL		delay
+		MOV		R0, R0, LSR #1 ;desplazamiento a la derecha
+		SUBS		R4, R4, #1 ;decremento en 1 a R4
+		BNE		LOOP2 ;si R4 no llegó a 0, repito LOOP2
+		ADD		R4, R4, #1 ;avanza = avanza + 1
+		SUBS		R5, R5, #1 ;decremento en 1 a R5
+		BNE		LOOP1 ;si R5 no llegó a 0, repito LOOP1
+		MOV		R4, #1

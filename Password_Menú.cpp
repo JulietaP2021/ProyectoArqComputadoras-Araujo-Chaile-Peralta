@@ -104,10 +104,14 @@ void autoFantastico() {
 
     unsigned char output; //un entero de 8 bits sin signo (rango de 0 a 255)
     int time = 1300; //tiempo de espera
+    int tecla;
 
     cout << "AUTO FANTASTICO" << endl;
     cout << endl;
-    cout << "Secuencia en accion... Oprima la tecla ESC para finalizar" << endl;
+    cout << "Secuencia en accion..." << endl;
+    cout << endl;
+    cout << "Oprima la tecla ESC para finalizar" << endl;
+    cout << "Oprima la tecla flecha ARRIBA o flecha ABAJO para controlar la velocidad" << endl;
     cout << endl;
 
     do {
@@ -126,9 +130,21 @@ void autoFantastico() {
             disp_binary(output);
             delay(time);
         }
-    } while(!kbhit()); //repeat loop until the keyboard is hit
 
-    char tecla = getch();
+        if(kbhit()) {
+            tecla = getch();
+            if(tecla == SUBIR) {
+                if(time != 700) { //máx. velocidad
+                    time = time - 200;
+                }
+            }
+            if(tecla == BAJAR) {
+                if(time != 1700) { //min. velocidad
+                    time = time + 200;
+                }
+            }
+        }
+    } while(tecla != ESC); //repeat loop until the keyboard is hit
 
     if(tecla == ESC) {
         system("cls");
@@ -142,10 +158,14 @@ void elChoque() {
 
     unsigned char output[8] = {0x81, 0x42, 0x24, 0x18, 0x18, 0x24, 0x42, 0x81};
     int time = 3000;
+    int tecla;
 
     cout << "EL CHOQUE" << endl;
     cout << endl;
-    cout << "Secuencia en accion... Oprima la tecla ESC para finalizar" << endl;
+    cout << "Secuencia en accion..." << endl;
+    cout << endl;
+    cout << "Oprima la tecla ESC para finalizar" << endl;
+    cout << "Oprima la tecla flecha ARRIBA o flecha ABAJO para controlar la velocidad" << endl;
     cout << endl;
 
     do {
@@ -154,9 +174,20 @@ void elChoque() {
             delay(time);
         }
 
-    } while (!kbhit());
-
-    char tecla = getch();
+        if(kbhit()) {
+            tecla = getch();
+            if(tecla == SUBIR) {
+                if(time != 1000) { //máx. velocidad
+                    time = time - 500;
+                }
+            }
+            if(tecla == BAJAR) {
+                if(time != 4000) { //min. velocidad
+                    time = time + 500;
+                }
+            }
+        }
+    } while (tecla != ESC);
 
     if(tecla == ESC) {
         system("cls");
@@ -169,16 +200,21 @@ void estrellaFugaz() {
     system("cls");
 
     unsigned char output[16] = {0x80, 0xc0, 0xe0, 0xf0, 0xf8, 0xfc, 0xfe, 0xff, 0x7f, 0x3f, 0x1f, 0x0f, 0x07, 0x03, 0x01, 0x00};
+    int time = 0;
+    int tecla;
 
     cout << "ESTRELLA FUGAZ" << endl;
     cout << endl;
-    cout << "Secuencia en accion... Oprima la tecla ESC para finalizar" << endl;
+    cout << "Secuencia en accion..." << endl;
+    cout << endl;
+    cout << "Oprima la tecla ESC para finalizar" << endl;
+    cout << "Oprima la tecla flecha ARRIBA o flecha ABAJO para controlar la velocidad" << endl;
     cout << endl;
 
     do {
         for(int i = 0; i < 8; i++) { //se prende
             disp_binary(output[i]);
-            delay(700);
+            delay(700 + time);
         }
 
         //1000 0000
@@ -192,8 +228,10 @@ void estrellaFugaz() {
 
         for(int i = 8; i < 16; i++) { //se apaga
             disp_binary(output[i]);
-            delay(2300);
+            delay(2300 + time);
         }
+
+        delay(17000 + time);
 
         //0111 1111
         //0011 1111
@@ -204,10 +242,20 @@ void estrellaFugaz() {
         //0000 0001
         //0000 0000
 
-        delay(17000);
-    } while(!kbhit());
-
-    char tecla = getch();
+        if(kbhit()) {
+            tecla = getch();
+            if(tecla == SUBIR) {
+                if(time != -800) { //máx. velocidad
+                    time = time - 200;
+                }
+            }
+            if(tecla == BAJAR) {
+                if(time != 1000) { //min. velocidad
+                    time = time + 200;
+                }
+            }
+        }
+    } while(tecla != ESC);
 
     if(tecla == ESC) {
         system("cls");
@@ -222,10 +270,14 @@ void elIndeciso() {
     unsigned char output;
     int time = 4000;
     int avanza = 1;
+    int tecla;
 
     cout << "EL INDECISO" << endl;
     cout << endl;
-    cout << "Secuencia en accion... Oprima la tecla ESC para finalizar" << endl;
+    cout << "Secuencia en accion..." << endl;
+    cout << endl;
+    cout << "Oprima la tecla ESC para finalizar" << endl;
+    cout << "Oprima la tecla flecha ARRIBA o flecha ABAJO para controlar la velocidad" << endl;
     cout << endl;
 
     do {
@@ -239,9 +291,21 @@ void elIndeciso() {
             avanza = avanza + 1;
         }
         avanza = 1;
-    } while(!kbhit());
 
-    char tecla = getch();
+        if(kbhit()) {
+                tecla = getch();
+                if(tecla == SUBIR) {
+                    if(time != 2000) { //máx. velocidad
+                        time = time - 1000;
+                    }
+                }
+                if(tecla == BAJAR) {
+                    if(time != 6000) { //min. velocidad
+                        time = time + 1000;
+                    }
+                }
+            }
+    } while(tecla != ESC);
 
     if(tecla == ESC) {
         system("cls");
